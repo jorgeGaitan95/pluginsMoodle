@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X8 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="4.1474mm" height="4.1854mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 13 13"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:#1F1B20;stroke-width:0.611132}
+    .fil0 {fill:#FEFEFE}
+    .fil1 {fill:#1F1B20}
+   ]]>
+  </style>
+ </defs>
+ <g id="Capa_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_600697552">
+   <circle class="fil0 str0" transform="matrix(0.946456 -0.0140473 -0.00274721 0.994962 6.33653 6.3945)" r="6"/>
+   <circle class="fil1" transform="matrix(0.487185 -0.0072308 -0.00147696 0.534914 8.30631 9.34218)" r="4"/>
+   <circle class="fil1" transform="matrix(0.487185 -0.0072308 -0.00147696 0.534914 9.75182 5.34577)" r="4"/>
+   <circle class="fil1" transform="matrix(0.487185 -0.0072308 -0.00147696 0.534914 6.27718 3.05998)" r="4"/>
+   <circle class="fil1" transform="matrix(0.487185 -0.0072308 -0.00147696 0.534914 2.71895 5.45808)" r="4"/>
+   <circle class="fil1" transform="matrix(0.487185 -0.0072308 -0.00147696 0.534914 4.18247 9.36787)" r="4"/>
+  </g>
+ </g>
+</svg>

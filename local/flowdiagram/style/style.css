@@ -1,0 +1,83 @@
+.diagram{
+  display: inline-block;
+  vertical-align: top;
+  width:480px;
+}
+.diagram-container{
+  border: 1px solid #bbb;
+  height: 720px;
+}
+.palette{
+  background-color: #F5F5F5;
+  border: 1px solid #bbb;
+  height: 692px;
+}
+.palette-title{
+  border: 1px solid #bbb;
+  background-color: #F5F5F5;
+  font-weight: bold;
+  padding: 3px 5px;
+  text-align-last: center;
+}
+.inspector{
+  background-color: #F5F5F5;
+  display: inline-block;
+  vertical-align: top;
+  width: 350px;
+
+}
+.inspector-title{
+  border: 1px solid #bbb;
+  background-color: #F5F5F5;
+  font-weight: bold;
+  padding: 3px 5px;
+  text-align-last: center;
+}
+.inspector-content{
+  border: 1px solid #bbb;
+  background-color: #F5F5F5;
+  height: 692px;
+}
+.label-input{
+  display: inline-block;
+  width: 84px;
+  text-align: left;
+  font-size: 13px;
+}
+.input-inspector{
+  width: 230px;
+  margin-top: 3px;
+  font-size: 13px !important;
+}
+.container-data{
+  display: table-cell;
+  vertical-align: middle;
+}
+.header-inpector-section{
+  font-weight: bold;
+  font-size: 13px;
+}
+.container-section{
+  padding: 10px 10px;
+  border-bottom: 1px solid #bbb;
+}
+.image-container{
+  display: inline-block;
+  margin-right: 16px;
+}
+
+.image-container img{
+  width: 90px;
+  height: 100px;
+  display: block;
+}
+
+.image-container input{
+  width: 100%;
+  margin-left: auto;
+  margin-top: 2px;
+}
+.container-form{
+  overflow-x:auto;
+  padding-bottom: 5px;
+}

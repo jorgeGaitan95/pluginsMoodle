@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X8 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="4.2334mm" height="4.2113mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 17 17"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <font id="FontID0" horiz-adv-x="722" font-variant="normal" style="fill-rule:nonzero" font-style="normal" font-weight="700">
+	<font-face 
+		font-family="Arial">
+		<font-face-src>
+			<font-face-name name="Arial Bold"/>
+		</font-face-src>
+	</font-face>
+   <missing-glyph><path d="M0 0z"/></missing-glyph>
+   <glyph unicode="F" horiz-adv-x="610" d="M72.9927 0l0 716.002 491.992 0 0 -121.005 -346.999 0 0 -170.009 300.014 0 0 -121.005 -300.014 0 0 -303.983 -144.993 0z"/>
+  </font>
+  <style type="text/css">
+   <![CDATA[
+    @font-face { font-family:"Arial";font-variant:normal;font-style:normal;font-weight:bold;src:url("#FontID0") format(svg)}
+    .fil2 {fill:none}
+    .fil1 {fill:#FEFEFE}
+    .fil0 {fill:#2B2A29}
+    .fnt0 {font-weight:bold;font-size:11.2933px;font-family:'Arial'}
+   ]]>
+  </style>
+ </defs>
+ <g id="Capa_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_731180624">
+   <g>
+    <circle class="fil0" cx="8" cy="8" r="8"/>
+    <text x="5" y="13"  class="fil1 fnt0">F</text>
+   </g>
+   <rect class="fil2" width="16.9403" height="16.8519"/>
+  </g>
+ </g>
+</svg>
