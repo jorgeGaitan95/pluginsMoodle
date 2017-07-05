@@ -25,7 +25,7 @@
           <div class="">
             <label class="label-input" for="">Tipo</label>
             <select id="select-tipoActividad" class="input-inspector" style="height:23px;padding:0;">
-              <option value="">Seleccione una opcion</option>
+              <option value="0">Seleccione una opcion</option>
               <option value="asimilativas">Asimilativas</option>
               <option value="gestion_informacion">Gestion de Informacion</option>
               <option value="aplicacion">Aplicacion</option>
@@ -44,7 +44,7 @@
           <div class="">
             <label class="label-input" for="">Actor</label>
             <select id="select-actor" class="input-inspector" style="height:23px;padding:0;">
-              <option value="">Seleccione una opcion</option>
+              <option value="0">Seleccione una opcion</option>
               <option value="Student">Student</option>
               <option value="Groups">Groups</option>
               <option value="Class">Class</option>
@@ -53,7 +53,7 @@
           <div class="">
             <label class="label-input" for="">Interaccion</label>
             <select id="select-tipointeraccion" class="input-inspector" style="height:23px;padding:0;">
-              <option value="">Seleccione una opcion</option>
+              <option value="0">Seleccione una opcion</option>
               <option value="FTF">Face To Face</option>
               <option value="Blended">Blended</option>
               <option value="Web">Web</option>
@@ -151,9 +151,43 @@ require(['local_flowdiagram/go','jquery','core/ajax'], function (go,jquery,ajax)
     aplicacion:["Entrenamiento"],
     comunicativas:["Asesoria","Asistencia","Discusion","Exposicion","Acuerdo","Conferencia"],
     evaluativas:["Escrita","Oral","Retroalimentacion"],
-    productivas:"",
-    experienciales:""
+    productivas:["Productiva"],
+    experienciales:["experiencial"]
   };
+  var imagenesSubTiposActividad={
+    asimilativa:{
+      formacion:"img/diagramIcons/subtiposActividad/Formacion.svg",
+      lectura:"img/diagramIcons/subtiposActividad/Lectura.svg",
+      observacion:"img/diagramIcons/subtiposActividad/Observacion.svg"
+    },
+    gestion_informacion:{
+      analisis:"img/diagramIcons/subtiposActividad/Analisis.svg",
+      busqueda:"img/diagramIcons/subtiposActividad/Busqueda.svg"
+    },
+    aplicacion:{
+      entrenamiento:"img/diagramIcons/subtiposActividad/Entrenamiento.svg"
+    },
+    comunicativas:{
+      asesoria:"img/diagramIcons/subtiposActividad/Asesoria.svg",
+      asistencia:"img/diagramIcons/subtiposActividad/Asistencia.svg",
+      discusion:"img/diagramIcons/subtiposActividad/Discusion.svg",
+      exposicion:"img/diagramIcons/subtiposActividad/Exposicion.svg",
+      acuerdo:"img/diagramIcons/subtiposActividad/Acuerdo.svg",
+      conferencia:"img/diagramIcons/subtiposActividad/Conferencia.svg"
+    },
+    evaluativas:{
+      escrita:"img/diagramIcons/subtiposActividad/Escrita.svg",
+      oral:"img/diagramIcons/subtiposActividad/Oral.svg",
+      retroalimentacion:"img/diagramIcons/subtiposActividad/Retroalimentacion.svg"
+    },
+    productivas:{
+      productiva:"img/diagramIcons/subtiposActividad/Productiva.svg"
+    },
+    experienciales:{
+      experiencial:"img/diagramIcons/subtiposActividad/Experiencial.svg"
+    }
+  }
+  var nodoSeleccionado={};
   myDiagram =$(go.Diagram, "myDiagramDiv",  // must name or refer to the DIV HTML element
   {
       initialContentAlignment: go.Spot.Center,
@@ -476,6 +510,7 @@ require(['local_flowdiagram/go','jquery','core/ajax'], function (go,jquery,ajax)
           function(e) {
             var part = e.subject.part;
             if (!(part instanceof go.Link)){
+              nodoSeleccionado=part;
               var nombre= part.data.name;
               var InteraccionNodo = part.data.tipoInteraccion;
 
@@ -632,19 +667,20 @@ require(['local_flowdiagram/go','jquery','core/ajax'], function (go,jquery,ajax)
 
     function initNodeData(){
       var nodedata = [
-        {"category":"Activity", "name":"Conceptos\nBásicos", tipoActividad:"asimilativas", subtipoActividad:"Formacion", "key":-2, "loc":"-18.984375 -308", strokeActivity:"#F7C296", tipoInteraccion:"img/diagramIcons/W.svg",Actor:"img/diagramIcons/Individual AUX.svg",activityType:"img/diagramIcons/Presentacion.svg",fillActivity:$(go.Brush, "Linear", { 0: "white", 1: "#FBE9DA", start:go.Spot.Right })},
-        {"category":"Activity", "name":"Busqueda", "key":-3, tipoActividad:"gestion_informacion", subtipoActividad:"Busqueda", "loc":"-18.984375 -206", tipoInteraccion:"img/diagramIcons/W.svg"},
-        {"category":"Activity", "name":"Taller", tipoActividad:"aplicacion", subtipoActividad:"Entrenamiento", "key":-4, "loc":"-85.984375 -33",  strokeActivity:"#A0C96C", tipoInteraccion:"img/diagramIcons/F.svg",Actor:"img/diagramIcons/Grupo.svg",activityType:"img/diagramIcons/Entrenamiento.svg",fillActivity:$(go.Brush, "Linear", { 0: "white", 1: "#DBEACD", start:go.Spot.Right })},
-        {"category":"Activity", "name":"Discusión\nsobre la tematica", tipoActividad:"comunicativas", subtipoActividad:"Discusion", "key":-5, "loc":"75.015625 -33", strokeActivity:"#A3BFE0", tipoInteraccion:"img/diagramIcons/F.svg",Actor:"img/diagramIcons/Grupo.svg",activityType:"img/diagramIcons/Chat.svg",fillActivity:$(go.Brush, "Linear", { 0: "white", 1: "#D4E0F2", start:go.Spot.Right })},
-        {"category":"Activity", "name":"Evaluacion", tipoActividad:"evaluativas", subtipoActividad:"Escrita", "key":-6, "loc":"-5.984375 123", strokeActivity:"#F19093", tipoInteraccion:"img/diagramIcons/W.svg",Actor:"img/diagramIcons/Individual AUX.svg",activityType:"img/diagramIcons/Evaluacion.svg",fillActivity:$(go.Brush, "Linear", { 0: "white", 1: "#FBE1E2", start:go.Spot.Right })},
-        {"category":"Merge", "key":-7, "loc":"-18.984375 -121"},
-        {"category":"sincronozación", "key":-9, "loc":"-5.984375 52"},
-        {"category":"Decision", "key":-8, "loc":"-5.984375 204"},
-        {"category":"Activity", "name":" Asistir a\nAsesoria", tipoActividad:"comunicativas", subtipoActividad:"Asesoria", "key":-10, "loc":"136.015625 261", strokeActivity:"#A3BFE0", tipoInteraccion:"img/diagramIcons/F.svg",Actor:"img/diagramIcons/Individual AUX.svg",activityType:"img/diagramIcons/Revision.svg",fillActivity:$(go.Brush, "Linear", { 0: "white", 1: "#D4E0F2", start:go.Spot.Right })},
-        {"category":"Notificacion", "key":-11, "loc":"-159.984375 57.99999999999994"},
-        {"category":"Espera", "key":-12, "loc":"136.015625 337"},
-        {"category":"Activity", "name":"Feedback de\nconceptos básicos", tipoActividad:"evaluativas", subtipoActividad:"Escrita", "key":-13, "loc":"-6.984375 423",strokeActivity:"#F19093", tipoInteraccion:"img/diagramIcons/W.svg",Actor:"img/diagramIcons/Individual AUX.svg",activityType:"img/diagramIcons/Evaluacion.svg",fillActivity:$(go.Brush, "Linear", { 0: "white", 1: "#FBE1E2", start:go.Spot.Right })},
-        {"category":"End", "key":-14, "loc":"-6.984375 503"}
+        {"category":"Activity", "name":"Conceptos\nBásicos", tipoActividad:"asimilativas", subtipoActividad:"Formacion", "key":-2, "loc":"-12.984375000000014 -197.00000000000006", strokeActivity:"#F7C296", tipoInteraccion:"img/diagramIcons/W.svg",Actor:"img/diagramIcons/Individual AUX.svg",activityType:"img/diagramIcons/Presentacion.svg",fillActivity:$(go.Brush, "Linear", { 0: "white", 1: "#FBE9DA", start:go.Spot.Right })},
+        {"category":"Activity", "name":"Busqueda", "key":-3, tipoActividad:"gestion_informacion", subtipoActividad:"Busqueda", "loc":"-12.984375000000014 -114.99999999999997", tipoInteraccion:"img/diagramIcons/W.svg"},
+        {"category":"Activity", "name":"Taller", tipoActividad:"aplicacion", subtipoActividad:"Entrenamiento", "key":-4, "loc":"-86.98437499999997 27.999999999999993",  strokeActivity:"#A0C96C", tipoInteraccion:"img/diagramIcons/F.svg",Actor:"img/diagramIcons/Grupo.svg",activityType:"img/diagramIcons/Entrenamiento.svg",fillActivity:$(go.Brush, "Linear", { 0: "white", 1: "#DBEACD", start:go.Spot.Right })},
+        {"category":"Activity", "name":"Discusión\nsobre la tematica", tipoActividad:"comunicativas", subtipoActividad:"Discusion", "key":-5, "loc":"74.01562500000001 26.999999999999993", strokeActivity:"#A3BFE0", tipoInteraccion:"img/diagramIcons/F.svg",Actor:"img/diagramIcons/Grupo.svg",activityType:"img/diagramIcons/Chat.svg",fillActivity:$(go.Brush, "Linear", { 0: "white", 1: "#D4E0F2", start:go.Spot.Right })},
+        {"category":"Activity", "name":"Evaluacion", tipoActividad:"evaluativas", subtipoActividad:"Escrita", "key":-6, "loc":"-5.984375 135", strokeActivity:"#F19093", tipoInteraccion:"img/diagramIcons/W.svg",Actor:"img/diagramIcons/Individual AUX.svg",activityType:"img/diagramIcons/Evaluacion.svg",fillActivity:$(go.Brush, "Linear", { 0: "white", 1: "#FBE1E2", start:go.Spot.Right })},
+        {"category":"Merge", "key":-7, "loc":"-12.984375 -44.99999999999997"},
+        {"category":"sincronozación", "key":-9, "loc":"-5.984375 81.00000000000001"},
+        {"category":"Decision", "key":-8, "loc":"-5.984375 204.99999999999994"},
+        {"category":"Activity", "name":" Asistir a\nAsesoria", tipoActividad:"comunicativas", subtipoActividad:"Asesoria", "key":-10, "loc":"136.01562499999997 262.99999999999994", strokeActivity:"#A3BFE0", tipoInteraccion:"img/diagramIcons/F.svg",Actor:"img/diagramIcons/Individual AUX.svg",activityType:"img/diagramIcons/Revision.svg",fillActivity:$(go.Brush, "Linear", { 0: "white", 1: "#D4E0F2", start:go.Spot.Right })},
+        {"category":"Notificacion", "key":-11, "loc":"-174.98437500000006 122.99999999999993"},
+        {"category":"Espera", "key":-12, "loc":"136.015625 327.00000000000006"},
+        {"category":"Activity", "name":"Feedback de\nconceptos básicos", tipoActividad:"evaluativas", subtipoActividad:"Escrita", "key":-13, "loc":"-5.984375 396.99999999999983",strokeActivity:"#F19093", tipoInteraccion:"img/diagramIcons/W.svg",Actor:"img/diagramIcons/Individual AUX.svg",activityType:"img/diagramIcons/Evaluacion.svg",fillActivity:$(go.Brush, "Linear", { 0: "white", 1: "#FBE1E2", start:go.Spot.Right })},
+        {"category":"End", "key":-14, "loc":"-5.984375 465.9999999999995"},
+        {"category":"Start", "key":-1, "loc":"-12.546875 -264"}
       ];
       return nodedata;
     }
@@ -658,13 +694,14 @@ require(['local_flowdiagram/go','jquery','core/ajax'], function (go,jquery,ajax)
         {"from":-5, "to":-9, "fromPort":"B", "toPort":"TR"},
         {"from":-9, "to":-6, "fromPort":"B", "toPort":"T"},
         {"from":-6, "to":-8, "fromPort":"B", "toPort":"T"},
-        {"from":-8, "to":-10, "fromPort":"R", "toPort":"T", "visible":true},
+        {"from":-8, "to":-10, "fromPort":"R", "toPort":"T", "visible":false},
         {"from":-10, "to":-12, "fromPort":"B", "toPort":"T"},
         {"from":-12, "to":-13, "fromPort":"B", "toPort":"T"},
-        {"from":-8, "to":-13, "fromPort":"B", "toPort":"T", "visible":true},
+        {"from":-8, "to":-13, "fromPort":"B", "toPort":"T", "visible":false},
         {"from":-13, "to":-14, "fromPort":"B", "toPort":"T"},
-        {"from":-6, "to":-11, "fromPort":"L", "toPort":"B"},
-        {"from":-4, "to":-11, "fromPort":"L", "toPort":"T"}
+        {"from":-4, "to":-11, "fromPort":"L", "toPort":"T"},
+        {"from":-1, "to":-2, "fromPort":"B", "toPort":"T"},
+        {"from":-8, "to":-11, "fromPort":"L", "toPort":"B", "visible":true, "text":"Evaluación <3"}
       ];
       return linkdata;
     }
@@ -860,8 +897,66 @@ require(['local_flowdiagram/go','jquery','core/ajax'], function (go,jquery,ajax)
       activateChangeEventSelectActivityType();
       function activateChangeEventSelectActivityType(){
         jquery('#select-tipoActividad').on('change',function(){
-          cargarSubtiposActividades(jquery('#select-tipoActividad').val());
+          valorTipoActivad=jquery('#select-tipoActividad').val();
+          cargarSubtiposActividades(valorTipoActivad);
+          updateNodeActivityTypeVisualmente(valorTipoActivad,nodoSeleccionado);
+          //carga el primer subtipo  de actividad por defecto;
+          selectSubtipoActividad=document.getElementById("select-subtipoActividad");
+          selectSubtipoActividad.options.selectedIndex="1";
+          valorSubtipoActividad=jquery('#select-subtipoActividad').val();
+          updateNodeActivitySubtypeVisualmente(valorTipoActivad,valorSubtipoActividad,nodoSeleccionado)
         });
+      };
+
+      function updateNodeActivityTypeVisualmente(valueTipoActividad,nodo){
+
+        var fillActivity="";
+        var strokeActivity="";
+        /*{"category":"Activity", tipoActividad:"asimilativas", subtipoActividad:"Formacion",  strokeActivity:"#F7C296", tipoInteraccion:"img/diagramIcons/W.svg",Actor:"img/diagramIcons/Individual AUX.svg",activityType:"img/diagramIcons/Presentacion.svg",fillActivity:$(go.Brush, "Linear", { 0: "white", 1: "#FBE9DA", start:go.Spot.Right })},
+        {"category":"Activity", tipoActividad:"gestion_informacion", subtipoActividad:"Busqueda",  tipoInteraccion:"img/diagramIcons/W.svg"},
+        {"category":"Activity", tipoActividad:"aplicacion", subtipoActividad:"Entrenamiento",  strokeActivity:"#A0C96C", tipoInteraccion:"img/diagramIcons/F.svg",Actor:"img/diagramIcons/Grupo.svg",activityType:"img/diagramIcons/Entrenamiento.svg",fillActivity:$(go.Brush, "Linear", { 0: "white", 1: "#DBEACD", start:go.Spot.Right })},
+        {"category":"Activity", tipoActividad:"comunicativas", subtipoActividad:"Discusion",  strokeActivity:"#A3BFE0", tipoInteraccion:"img/diagramIcons/F.svg",Actor:"img/diagramIcons/Grupo.svg",activityType:"img/diagramIcons/Chat.svg",fillActivity:$(go.Brush, "Linear", { 0: "white", 1: "#D4E0F2", start:go.Spot.Right })},
+        {"category":"Activity", tipoActividad:"evaluativas", subtipoActividad:"Escrita",  strokeActivity:"#F19093", tipoInteraccion:"img/diagramIcons/W.svg",Actor:"img/diagramIcons/Individual AUX.svg",activityType:"img/diagramIcons/Evaluacion.svg",fillActivity:$(go.Brush, "Linear", { 0: "white", 1: "#FBE1E2", start:go.Spot.Right })},
+        {"category":"Activity", tipoActividad:"comunicativas", subtipoActividad:"Asesoria",strokeActivity:"#A3BFE0", tipoInteraccion:"img/diagramIcons/F.svg",Actor:"img/diagramIcons/Individual AUX.svg",activityType:"img/diagramIcons/Revision.svg",fillActivity:$(go.Brush, "Linear", { 0: "white", 1: "#D4E0F2", start:go.Spot.Right })},
+        {"category":"Activity", tipoActividad:"evaluativas", subtipoActividad:"Escrita", strokeActivity:"#F19093", tipoInteraccion:"img/diagramIcons/W.svg",Actor:"img/diagramIcons/Individual AUX.svg",activityType:"img/diagramIcons/Evaluacion.svg",fillActivity:$(go.Brush, "Linear", { 0: "white", 1: "#FBE1E2", start:go.Spot.Right })},
+        */switch (valueTipoActividad) {
+          case tipoActividad.asimilativa:
+            fillActivity=$(go.Brush, "Linear", { 0: "white", 1: "#FBE9DA", start:go.Spot.Right });
+            strokeActivity="#F7C296";
+            break;
+          case tipoActividad.gestion_informacion:
+            fillActivity=$(go.Brush, "Linear", { 0: "white", 1: "#eee", start:go.Spot.Right });
+            strokeActivity="#bbb";
+            break;
+          case tipoActividad.aplicacion:
+            fillActivity=$(go.Brush, "Linear", { 0: "white", 1: "#DBEACD", start:go.Spot.Right });
+            strokeActivity="#A0C96C";
+            break;
+          case tipoActividad.comunicativas:
+            fillActivity=$(go.Brush, "Linear", { 0: "white", 1: "#D4E0F2", start:go.Spot.Right });
+            strokeActivity="#A3BFE0";
+            break;
+          case tipoActividad.evaluativas:
+            fillActivity=$(go.Brush, "Linear", { 0: "white", 1: "#FBE1E2", start:go.Spot.Right });
+            strokeActivity="#F19093";
+            break;
+          case tipoActividad.productivas:
+            fillActivity=$(go.Brush, "Linear", { 0: "white", 1: "#FCF8D2", start:go.Spot.Right });
+            strokeActivity="#F2E66E";
+            break;
+          case tipoActividad.experienciales:
+            fillActivity=$(go.Brush, "Linear", { 0: "white", 1: "#F3BCD7", start:go.Spot.Right });
+            strokeActivity="#E37BAE";
+            break;
+          default:
+            return;
+          }
+
+        var model = myDiagram.model;
+        model.startTransaction("change aspecto del nodo segun tipo actividad");
+        model.setDataProperty(nodo.data,"fillActivity",fillActivity);
+        model.setDataProperty(nodo.data,"strokeActivity",strokeActivity);
+        model.commitTransaction("change aspecto del nodo segun tipo actividad");
       };
 
       function cargarSubtiposActividades(valor){
@@ -875,7 +970,7 @@ require(['local_flowdiagram/go','jquery','core/ajax'], function (go,jquery,ajax)
               array=subtiposActividad.gestion_informacion;
               break;
             case tipoActividad.aplicacion:
-              array=subtiposActividad.aplicacion;;
+              array=subtiposActividad.aplicacion;
               break;
             case tipoActividad.comunicativas:
               array=subtiposActividad.comunicativas;
@@ -890,9 +985,8 @@ require(['local_flowdiagram/go','jquery','core/ajax'], function (go,jquery,ajax)
               array=subtiposActividad.experienciales;
               break;
             default:
-              return;
+              break;
           }
-          console.log(array);
           document.getElementById("select-subtipoActividad").options.length=0;
 
           // añadimos los nuevos valores al select2
@@ -905,7 +999,240 @@ require(['local_flowdiagram/go','jquery','core/ajax'], function (go,jquery,ajax)
         }
       }
 
+      activateChangeEventSelectActivitySubtype();
+      function activateChangeEventSelectActivitySubtype(){
+        jquery('#select-subtipoActividad').on('change',function(){
+          var valorTipoActivad=jquery('#select-tipoActividad').val();
+          var valorSubtipoActividad=jquery('#select-subtipoActividad').val();
+          updateNodeActivitySubtypeVisualmente(valorTipoActivad,valorSubtipoActividad,nodoSeleccionado);
+        });
+      };
+
+      function updateNodeActivitySubtypeVisualmente(valorTipoActivad,valorSubtipoActividad,nodo){
+
+        var subtipoActividad="";
+        var activityType="";
+        switch (valorTipoActivad) {
+          case tipoActividad.asimilativa:
+            switch (valorSubtipoActividad) {
+              case subtiposActividad.asimilativa[0]:
+                subtipoActividad="Formacion";
+                activityType=imagenesSubTiposActividad.asimilativa.formacion;
+                break;
+              case subtiposActividad.asimilativa[1]:
+                subtipoActividad="Lectura";
+                activityType=imagenesSubTiposActividad.asimilativa.lectura;
+                break;
+              case subtiposActividad.asimilativa[2]:
+                subtipoActividad="Observacion";
+                activityType=imagenesSubTiposActividad.asimilativa.observacion;
+                break;
+              default:
+                return
+            }
+            break;
+          case tipoActividad.gestion_informacion:
+            switch (valorSubtipoActividad) {
+              case subtiposActividad.gestion_informacion[0]:
+                subtipoActividad="Analisis";
+                activityType=imagenesSubTiposActividad.gestion_informacion.analisis;
+                break;
+              case subtiposActividad.gestion_informacion[1]:
+                subtipoActividad="Busqueda";
+                activityType=imagenesSubTiposActividad.gestion_informacion.busqueda;
+                break;
+              default:
+                return
+            }
+            break;
+          case tipoActividad.aplicacion:
+            switch (valorSubtipoActividad) {
+              case subtiposActividad.aplicacion[0]:
+                subtipoActividad="Entrenamiento";
+                activityType=imagenesSubTiposActividad.aplicacion.entrenamiento;
+                break;
+              default:
+                return
+            }
+            break;
+          case tipoActividad.comunicativas:
+            switch (valorSubtipoActividad) {
+              case subtiposActividad.comunicativas[0]:
+                subtipoActividad="Asesoria";
+                activityType=imagenesSubTiposActividad.comunicativas.asesoria;
+                break;
+              case subtiposActividad.comunicativas[1]:
+                subtipoActividad="Asistencia";
+                activityType=imagenesSubTiposActividad.comunicativas.asistencia;
+                break;
+              case subtiposActividad.comunicativas[2]:
+                subtipoActividad="Discusion";
+                activityType=imagenesSubTiposActividad.comunicativas.discusion;
+                break;
+              case subtiposActividad.comunicativas[3]:
+                subtipoActividad="Exposicion";
+                activityType=imagenesSubTiposActividad.comunicativas.exposicion;
+                break;
+              case subtiposActividad.comunicativas[4]:
+                subtipoActividad="Acuerdo";
+                activityType=imagenesSubTiposActividad.comunicativas.acuerdo;
+                break;
+              case subtiposActividad.comunicativas[5]:
+                subtipoActividad="Conferencia";
+                activityType=imagenesSubTiposActividad.comunicativas.conferencia;
+                break;
+              default:
+                return
+            }
+            break;
+          case tipoActividad.evaluativas:
+            switch (valorSubtipoActividad) {
+              case subtiposActividad.evaluativas[0]:
+                subtipoActividad="Escrita";
+                activityType=imagenesSubTiposActividad.evaluativas.escrita;
+                break;
+              case subtiposActividad.evaluativas[1]:
+                subtipoActividad="Oral";
+                activityType=imagenesSubTiposActividad.evaluativas.oral;
+                break;
+              case subtiposActividad.evaluativas[2]:
+                subtipoActividad="Retroalimentacion";
+                activityType=imagenesSubTiposActividad.evaluativas.retroalimentacion;
+                break;
+              default:
+                return;
+            }
+            break;
+          case tipoActividad.productivas:
+            switch (valorSubtipoActividad) {
+              case subtiposActividad.productivas[0]:
+                subtipoActividad="Productiva";
+                activityType=imagenesSubTiposActividad.productivas.productiva;
+                break;
+              default:
+                return;
+            }
+            break;
+          case tipoActividad.experienciales:
+            switch (valorSubtipoActividad) {
+              case subtiposActividad.experienciales[0]:
+                subtipoActividad="Experiencial";
+                activityType=imagenesSubTiposActividad.experienciales.experiencial;
+                break;
+              default:
+                return;
+            }
+            break;
+          default:
+            return;
+          }
+
+        var model = myDiagram.model;
+        model.startTransaction("change aspecto del nodo segun subtipo actividad");
+        model.setDataProperty(nodo.data,"subtipoActividad",subtipoActividad);
+        model.setDataProperty(nodo.data,"activityType",activityType);
+        model.commitTransaction("change aspecto del nodo segun subtipo actividad");
+      };
+
+      activateChangeEventSelectActor();
+      function activateChangeEventSelectActor(){
+        jquery('#select-actor').on('change',function(){
+          var valorActor=jquery('#select-actor').val();
+          updateNodeActorVisualmente(valorActor,nodoSeleccionado);
+        });
+      };
+
+      function updateNodeActorVisualmente(valorActor,nodo){
+        var Actor="";
+        switch (valorActor) {
+          case "Student":
+            Actor="img/diagramIcons/Individual AUX.svg";
+            break;
+          case "Groups":
+            Actor="img/diagramIcons/Grupo.svg";
+            break;
+          case "Class":
+            Actor="img/diagramIcons/CursoF.svg";
+            break;
+          default:
+            return;
+          }
+
+        var model = myDiagram.model;
+        model.startTransaction("change actor del nodo");
+        model.setDataProperty(nodo.data,"Actor",Actor);
+        model.commitTransaction("change actor del nodo");
+      };
+
+      activateChangeEventSelectInteractionType();
+      function activateChangeEventSelectInteractionType(){
+        jquery('#select-tipointeraccion').on('change',function(){
+          var valorTipoInteraccion=jquery('#select-tipointeraccion').val();
+          updateNodeInteractionTypeVisualmente(valorTipoInteraccion,nodoSeleccionado);
+        });
+      };
+
+      function updateNodeInteractionTypeVisualmente(valorTipoInteraccion,nodo){
+        var stringTipoInteraccion="";
+        switch (valorTipoInteraccion) {
+          case "FTF":
+            stringTipoInteraccion="img/diagramIcons/F.svg";
+            break;
+          case "Blended":
+            stringTipoInteraccion="img/diagramIcons/B.svg";
+            break;
+          case "Web":
+            stringTipoInteraccion="img/diagramIcons/W.svg";
+            break;
+          default:
+            return;
+          }
+
+        var model = myDiagram.model;
+        model.startTransaction("change tipoInteraccion del nodo");
+        model.setDataProperty(nodo.data,"tipoInteraccion",stringTipoInteraccion);
+        model.commitTransaction("change tipoInteraccion del nodo");
+      };
+
+      activateChangeEventInputNameActivity();
+      function activateChangeEventInputNameActivity(){
+        jquery('#input-nombre').on('change',function(){
+          updateNodeNameVisualmente(jquery(this).val(),nodoSeleccionado);
+        });
+      };
+
+      function updateNodeNameVisualmente(newName,nodo){
+        var model = myDiagram.model;
+        model.startTransaction("change nombre del nodo");
+        model.setDataProperty(nodo.data,"name",newName);
+        model.commitTransaction("change nombre del nodo");
+      };
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
