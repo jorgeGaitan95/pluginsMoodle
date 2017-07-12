@@ -32,7 +32,8 @@ if (!$educational_strategy = $DB->get_record('educational_strategy', array('id' 
 }
 $actividades= get_activities_educational_strategy($educational_strategy->id);
 $templates= get_all_templates();
-print_object($templates);
+//imprime la plantilas obtenidas a través del web service a la base de datos
+//print_object($templates);
 global $COURSE,$USER;
 $coursecontext = context_course::instance($COURSE->id);
 require_login($COURSE);

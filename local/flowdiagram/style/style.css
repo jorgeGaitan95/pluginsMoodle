@@ -48,6 +48,13 @@
   width: 230px;
   margin-top: 3px;
   font-size: 13px !important;
+  height: 12px !important;
+  width: 217px;
+}
+.select-inspector{
+  width: 230px;
+  margin-top: 3px;
+  font-size: 13px !important;
 }
 .container-data{
   display: table-cell;
